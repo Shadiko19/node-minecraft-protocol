@@ -22,7 +22,9 @@ module.exports = function (client, options) {
       }
     }
 
-    if (options.session) {
+    if (options.mcLeaks && options.session) {
+      cb(null, options.session);
+    } else if (options.session) {
       if (!skipValidation) {
         yggdrasilClient.validate(options.session.accessToken, function (err) {
           if (!err) { cb(null, options.session) } else {
